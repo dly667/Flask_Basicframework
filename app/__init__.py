@@ -10,15 +10,16 @@ mail = Mail()
 moment = Moment()
 db = SQLAlchemy()
 
-def create_app(cofig_name):
+def create_app(config_name):
     app = Flask(__name__)
-    app.config.from_object(config[config])
-    config[config].init_app(app)
+    app.config.from_object(config[config_name])
+    config[config_name].init_app(app)
 
     bootstrap.init_app(app)
     mail.init_app(app)
     moment.init_app(app)
     db.init_app(app)
+    print(app.config['SQLALCHEMY_DATABASE_URI'])
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
     return app
