@@ -19,6 +19,8 @@ class DevelopmentsConfig(Config):
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
         'sqlite:///'+os.path.join(basedir, 'data-dev.sqlite')
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+    SQLALCHEMY_COMMIT_TEARDOWN = True
 
 
 class ProductionConfig(Config):
