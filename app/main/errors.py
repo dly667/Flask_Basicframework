@@ -3,7 +3,7 @@ from . import main
 
 @main.app_errorhandler(404)
 def not_found_page(e):
-    return render_template('404.html'),400
+    return render_template('404.html'),404
 
 @main.app_errorhandler(500)
 def internal_server_error(e):

@@ -13,9 +13,14 @@ manage = Manager(app)
 
 def make_shell_context():
     return dict(app=app,db=db)
-print(db,1)
+
 manage.add_command("shell",Shell(make_context=make_shell_context))
 # manage.add_command("db",MigrateCommand)
-
+@manage.command
+def test():
+    """Run the unit tests."""
+    import unittest
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner(verbosity=2).run(tests)
 if __name__ == '__main__':
     manage.run()
